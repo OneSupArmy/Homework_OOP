@@ -49,13 +49,13 @@ public class Car {
         return engineVolume;
     }
     public void setEngineVolume(double engineVolume) {
-        this.engineVolume = engineVolume;
+        this.engineVolume = engineVolume <= 0 ? 1.5 : engineVolume;;
     }
     public String getColor() {
         return color;
     }
     public void setColor(String color) {
-        this.color = color;
+        this.color = color == null || color.equals("") ? "white" : color;
     }
     public int getYear() {
         return year;
@@ -67,7 +67,7 @@ public class Car {
         return transmission;
     }
     public void setTransmission(String transmission) {
-        this.transmission = transmission;
+        this.transmission = Utility.doStringValidation(transmission);
     }
     public String getBodyType() {
         return bodyType;
@@ -76,7 +76,7 @@ public class Car {
         return registrationNumber;
     }
     public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+        this.registrationNumber = Utility.doStringValidation(registrationNumber);
     }
     public int getAmountOfSeats() {
         return amountOfSeats;
