@@ -2,7 +2,7 @@ package homeworkOOP.transport;
 
 import static homeworkOOP.Utility.*;
 
-public class Transport {
+public abstract class Transport {
     final private String brand;
     final private String model;
     final private int year;
