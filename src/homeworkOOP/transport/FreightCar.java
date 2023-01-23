@@ -1,29 +1,28 @@
 package homeworkOOP.transport;
 
-import homeworkOOP.drivers.DriverWithC;
+import homeworkOOP.drivers.DriverWithD;
 
-public class Bus extends Transport {
-    DriverWithC driver;
-    public Bus(String brand, String model, double engineCapacity) {
+public class FreightCar extends Transport{
+    private DriverWithD driver;
+
+    public FreightCar(String brand, String model, double engineCapacity) {
         super(brand, model, engineCapacity);
     }
 
-    public void setDriver(DriverWithC driver) {
+    public void setDriver(DriverWithD driver) {
         if (!driver.isDriverWithLicense()) {
-            System.out.println("Невозоможно назначить автобус " + driver.getName() + ". Отстутствует лицензия");
+            System.out.println("Невозоможно назначить грузовую машину водителю " + driver.getName() + ". Отстутствует лицензия");
             return;
         }
         if (this.driver != null)
-            this.driver.removeBus();
+            this.driver.removeCar();
         this.driver = driver;
-        if (driver.getBus() == null || !driver.getBus().equals(this))
-            driver.setBus(this);
+        if (driver.getFreightCar() == null || !driver.getFreightCar().equals(this))
+            driver.setFreightCar(this);
     }
-
-    public DriverWithC getDriver() {
+    public DriverWithD getDriver() {
         return driver;
     }
-
     public void removeDriver() {
         this.driver = null;
     }
@@ -62,4 +61,5 @@ public class Bus extends Transport {
         }
         return super.toString() + " Водитель: " + string;
     }
+
 }

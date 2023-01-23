@@ -1,26 +1,27 @@
 package homeworkOOP.transport;
 
-import homeworkOOP.drivers.DriverWithC;
+import homeworkOOP.drivers.DriverWithB;
 
-public class Bus extends Transport {
-    DriverWithC driver;
-    public Bus(String brand, String model, double engineCapacity) {
+public class LightCar extends Transport {
+    private DriverWithB driver;
+
+    public LightCar(String brand, String model, double engineCapacity) {
         super(brand, model, engineCapacity);
     }
 
-    public void setDriver(DriverWithC driver) {
+    public void setDriver(DriverWithB driver) {
         if (!driver.isDriverWithLicense()) {
-            System.out.println("Невозоможно назначить автобус " + driver.getName() + ". Отстутствует лицензия");
+            System.out.println("Невозоможно назначить машину водителю " + driver.getName() + ". Отстутствует лицензия");
             return;
         }
         if (this.driver != null)
-            this.driver.removeBus();
+            this.driver.removeCar();
         this.driver = driver;
-        if (driver.getBus() == null || !driver.getBus().equals(this))
-            driver.setBus(this);
+        if (driver.getCar() == null || !driver.getCar().equals(this))
+            driver.setCar(this);
     }
 
-    public DriverWithC getDriver() {
+    public DriverWithB getDriver() {
         return driver;
     }
 
@@ -35,7 +36,7 @@ public class Bus extends Transport {
 
     @Override
     public void endMoving() {
-        System.out.println("Аутобус остановился");
+        System.out.println("Автобус остановился");
     }
 
     @Override
@@ -52,6 +53,7 @@ public class Bus extends Transport {
     public void maxSpeed() {
         System.out.println("Максимальная скорость автобуса");
     }
+
     @Override
     public String toString() {
         String string;
