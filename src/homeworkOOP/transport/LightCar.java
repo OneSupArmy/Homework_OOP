@@ -1,12 +1,53 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithB;
+import homeworkOOP.utility.Validation;
+import java.util.Objects;
+import static homeworkOOP.transport.LightCar.CarType.NULL_TYPE;
 
 public class LightCar extends Transport {
     private DriverWithB driver;
-
-    public LightCar(String brand, String model, double engineCapacity) {
+    private Enum carType;
+    public LightCar(String brand, String model, double engineCapacity, Enum carType) {
         super(brand, model, engineCapacity);
+        this.carType = Objects.requireNonNullElse(carType, NULL_TYPE);
+    }
+    public enum CarType {
+        SEDAN("Седан"),
+        HATCHBACK("Хетчбэк"),
+        COUPE("Купе"),
+        UNIVERSAL("Универсал"),
+        SUV("Внедорожник"),
+        CROSSOVER("Кроссовер"),
+        PICKUP("Пикап"),
+        VAN("Фургон"),
+        MINIVAN("Минивэн"),
+        NULL_TYPE("unknown");
+        private final String carType;
+
+        private CarType(String carType) {
+            this.carType = carType;
+        }
+
+        public String getCarType() {
+            return carType;
+        }
+
+        @Override
+        public String toString() {
+            return "Тип машины: " + carType;
+        }
+    }
+    public void printType(){
+        System.out.println(Validation.doEnumValidation(carType));
+    }
+
+    public Enum getCarType() {
+        return carType;
+    }
+
+    public void setCarType(Enum carType) {
+        this.carType = Objects.requireNonNullElse(carType, NULL_TYPE);
     }
 
     public void setDriver(DriverWithB driver) {

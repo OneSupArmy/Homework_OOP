@@ -1,11 +1,63 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithC;
+import homeworkOOP.utility.Validation;
+
+import java.util.Objects;
+
+import static homeworkOOP.transport.Bus.AmountOfSeats.NULL_AMOUNT;
 
 public class Bus extends Transport {
-    DriverWithC driver;
-    public Bus(String brand, String model, double engineCapacity) {
+    private DriverWithC driver;
+    private Enum amountOfSeats;
+
+    public Bus(String brand, String model, double engineCapacity, Enum amountOfSeats) {
         super(brand, model, engineCapacity);
+        this.amountOfSeats = Objects.requireNonNullElse(amountOfSeats, NULL_AMOUNT);
+    }
+
+    public enum AmountOfSeats {
+        EXTRA_SMALL(null, 10),
+        SMALL(null, 25),
+        MEDIUM(40, 50),
+        LARGE(60, 80),
+        EXTRA_LARGE(100, 120),
+        NULL_AMOUNT(null, null);
+        private final Integer bottomBound;
+        private final Integer upperBound;
+
+
+        AmountOfSeats(Integer bottomBound, Integer upperBound) {
+            this.bottomBound = bottomBound;
+            this.upperBound = upperBound;
+        }
+
+        public float getBottomBound() {
+            return bottomBound;
+        }
+
+        public float getUpperBound() {
+            return upperBound;
+        }
+
+        @Override
+        public String toString() {
+            if (bottomBound == null)
+                return "Вместимость: до " + upperBound + " человек.";
+            return "Вместимость: от " + bottomBound + " до " + upperBound + " человек.";
+        }
+    }
+
+    public void printType() {
+        System.out.println(Validation.doEnumValidation(amountOfSeats));
+    }
+
+    public Enum getAmountOfSeats() {
+        return amountOfSeats;
+    }
+
+    public void setAmountOfSeats(Enum amountOfSeats) {
+        this.amountOfSeats = Objects.requireNonNullElse(amountOfSeats, NULL_AMOUNT);
     }
 
     public void setDriver(DriverWithC driver) {
@@ -52,6 +104,7 @@ public class Bus extends Transport {
     public void maxSpeed() {
         System.out.println("Максимальная скорость автобуса");
     }
+
     @Override
     public String toString() {
         String string;
