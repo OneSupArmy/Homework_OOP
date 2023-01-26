@@ -1,12 +1,56 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithD;
+import homeworkOOP.utility.Validation;
+
+import java.util.Objects;
+import static homeworkOOP.transport.FreightCar.LoadCapacity.NULL_LOAD;
 
 public class FreightCar extends Transport{
     private DriverWithD driver;
+    private Enum loadCapacity;
 
-    public FreightCar(String brand, String model, double engineCapacity) {
+    public FreightCar(String brand, String model, double engineCapacity, Enum loadCapacity) {
         super(brand, model, engineCapacity);
+        this.loadCapacity = Objects.requireNonNullElse(loadCapacity, NULL_LOAD);
+    }
+    public enum LoadCapacity{
+        N1(null, 3.5f),
+        N2(3.5f, 12.0f),
+        N3(12.0f, null),
+        NULL_LOAD(null, null);
+        private final Float bottomBound;
+        private final Float upperBound;
+        LoadCapacity(Float bottomBound, Float upperBound) {
+            this.bottomBound = bottomBound;
+            this.upperBound = upperBound;
+        }
+        public float getBottomBound() {
+            return bottomBound;
+        }
+        public float getUpperBound() {
+            return upperBound;
+        }
+        @Override
+        public String toString() {
+            if (bottomBound == null)
+                return "Грузоподъемность: до " + upperBound + " тонн";
+            if (upperBound == null)
+                return "Грузоподъемность: от " + bottomBound + " тонн";
+            return "Грузоподъемность: от " + bottomBound +
+                    " до " + upperBound + " тонн";
+        }
+    }
+    public void printType() {
+        System.out.println(Validation.doEnumValidation(loadCapacity));
+    }
+
+    public Enum getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(Enum loadCapacity) {
+        this.loadCapacity = Objects.requireNonNullElse(loadCapacity, NULL_LOAD);
     }
 
     public void setDriver(DriverWithD driver) {

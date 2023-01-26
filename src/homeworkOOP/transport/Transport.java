@@ -12,6 +12,7 @@ public abstract class Transport implements Competing{
         this.model = doStringValidation(model);
         this.engineCapacity = Math.max(engineCapacity,0);
     }
+    public abstract void printType();
     public void startMoving(){
     }
     public void endMoving(){
