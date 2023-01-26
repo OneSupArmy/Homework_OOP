@@ -1,11 +1,6 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithC;
-import homeworkOOP.utility.Validation;
-
-import java.util.Objects;
-
-import static homeworkOOP.transport.Bus.AmountOfSeats.NULL_AMOUNT;
 
 public class Bus extends Transport {
     private DriverWithC driver;
@@ -13,7 +8,7 @@ public class Bus extends Transport {
 
     public Bus(String brand, String model, double engineCapacity, Enum amountOfSeats) {
         super(brand, model, engineCapacity);
-        this.amountOfSeats = Objects.requireNonNullElse(amountOfSeats, NULL_AMOUNT);
+        this.amountOfSeats = amountOfSeats;
     }
 
     public enum AmountOfSeats {
@@ -21,8 +16,7 @@ public class Bus extends Transport {
         SMALL(null, 25),
         MEDIUM(40, 50),
         LARGE(60, 80),
-        EXTRA_LARGE(100, 120),
-        NULL_AMOUNT(null, null);
+        EXTRA_LARGE(100, 120);
         private final Integer bottomBound;
         private final Integer upperBound;
 
@@ -49,7 +43,11 @@ public class Bus extends Transport {
     }
 
     public void printType() {
-        System.out.println(Validation.doEnumValidation(amountOfSeats));
+        if (amountOfSeats == null) {
+            System.out.println("Данных по количетву сидений недостаточно");
+        } else {
+            System.out.println("Тип автобуса: " + amountOfSeats.name());
+        }
     }
 
     public Enum getAmountOfSeats() {
@@ -57,7 +55,7 @@ public class Bus extends Transport {
     }
 
     public void setAmountOfSeats(Enum amountOfSeats) {
-        this.amountOfSeats = Objects.requireNonNullElse(amountOfSeats, NULL_AMOUNT);
+        this.amountOfSeats = amountOfSeats;
     }
 
     public void setDriver(DriverWithC driver) {

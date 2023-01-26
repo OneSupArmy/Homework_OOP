@@ -1,10 +1,6 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithD;
-import homeworkOOP.utility.Validation;
-
-import java.util.Objects;
-import static homeworkOOP.transport.FreightCar.LoadCapacity.NULL_LOAD;
 
 public class FreightCar extends Transport{
     private DriverWithD driver;
@@ -12,13 +8,12 @@ public class FreightCar extends Transport{
 
     public FreightCar(String brand, String model, double engineCapacity, Enum loadCapacity) {
         super(brand, model, engineCapacity);
-        this.loadCapacity = Objects.requireNonNullElse(loadCapacity, NULL_LOAD);
+        this.loadCapacity = loadCapacity;
     }
     public enum LoadCapacity{
         N1(null, 3.5f),
         N2(3.5f, 12.0f),
-        N3(12.0f, null),
-        NULL_LOAD(null, null);
+        N3(12.0f, null);
         private final Float bottomBound;
         private final Float upperBound;
         LoadCapacity(Float bottomBound, Float upperBound) {
@@ -42,7 +37,11 @@ public class FreightCar extends Transport{
         }
     }
     public void printType() {
-        System.out.println(Validation.doEnumValidation(loadCapacity));
+        if (loadCapacity == null) {
+            System.out.println("Данных по грузоподъемности недостаточно");
+        } else {
+            System.out.println("Тип грузового автомобиля: " + loadCapacity.name());
+        }
     }
 
     public Enum getLoadCapacity() {
@@ -50,7 +49,7 @@ public class FreightCar extends Transport{
     }
 
     public void setLoadCapacity(Enum loadCapacity) {
-        this.loadCapacity = Objects.requireNonNullElse(loadCapacity, NULL_LOAD);
+        this.loadCapacity = loadCapacity;
     }
 
     public void setDriver(DriverWithD driver) {
