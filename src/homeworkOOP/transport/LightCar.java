@@ -1,16 +1,13 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithB;
-import homeworkOOP.utility.Validation;
-import java.util.Objects;
-import static homeworkOOP.transport.LightCar.CarType.NULL_TYPE;
 
 public class LightCar extends Transport {
     private DriverWithB driver;
     private Enum carType;
     public LightCar(String brand, String model, double engineCapacity, Enum carType) {
         super(brand, model, engineCapacity);
-        this.carType = Objects.requireNonNullElse(carType, NULL_TYPE);
+        this.carType = carType;
     }
     public enum CarType {
         SEDAN("Седан"),
@@ -21,8 +18,7 @@ public class LightCar extends Transport {
         CROSSOVER("Кроссовер"),
         PICKUP("Пикап"),
         VAN("Фургон"),
-        MINIVAN("Минивэн"),
-        NULL_TYPE("unknown");
+        MINIVAN("Минивэн");
         private final String carType;
 
         private CarType(String carType) {
@@ -39,7 +35,11 @@ public class LightCar extends Transport {
         }
     }
     public void printType(){
-        System.out.println(Validation.doEnumValidation(carType));
+        if (carType == null) {
+            System.out.println("Данных о типе автомобиля недостаточно");
+        } else {
+            System.out.println("Тип легкового автомобиля: " + carType.name());
+        }
     }
 
     public Enum getCarType() {
@@ -47,7 +47,7 @@ public class LightCar extends Transport {
     }
 
     public void setCarType(Enum carType) {
-        this.carType = Objects.requireNonNullElse(carType, NULL_TYPE);
+        this.carType = carType;
     }
 
     public void setDriver(DriverWithB driver) {
