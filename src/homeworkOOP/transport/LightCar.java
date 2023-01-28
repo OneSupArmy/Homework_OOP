@@ -71,6 +71,11 @@ public class LightCar extends Transport {
     }
 
     @Override
+    public void doDiagnostic() {
+        System.out.println("Автомобиль прошел диагностику");
+    }
+
+    @Override
     public void startMoving() {
         System.out.println("Автобус поехал");
     }

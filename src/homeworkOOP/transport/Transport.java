@@ -1,5 +1,7 @@
 package homeworkOOP.transport;
 
+import homeworkOOP.utility.TransportTypeException;
+
 import static homeworkOOP.utility.Validation.doStringValidation;
 
 public abstract class Transport implements Competing{
@@ -16,6 +18,8 @@ public abstract class Transport implements Competing{
     public void startMoving(){
     }
     public void endMoving(){
+    }
+    public void doDiagnostic() {
     }
     public String getBrand() {
         return brand;
