@@ -30,11 +30,8 @@ public class Main {
             add(new FreightCar("Машина побольше 3", "какая-то модель", 0.1, N3));
             add(new FreightCar("Машина побольше 4", "какая-то модель", 0.1, N2));
         }};
-        carList.get(0).printType();
-        carList.get(1).printType();
-        carList.get(4).printType();
-        carList.get(5).printType();
-        carList.get(8).printType();
-        carList.get(9).printType();
+        carList.get(5).doDiagnostic();
+        carList.get(9).doDiagnostic();
+        carList.get(0).doDiagnostic();
     }
 }

@@ -69,6 +69,10 @@ public class FreightCar extends Transport{
     public void removeDriver() {
         this.driver = null;
     }
+    @Override
+    public void doDiagnostic() {
+        System.out.println("Грузовой автомобиль прошел диагностику");
+    }
 
     @Override
     public void startMoving() {

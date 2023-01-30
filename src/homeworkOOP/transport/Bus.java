@@ -1,6 +1,7 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithC;
+import homeworkOOP.utility.TransportTypeException;
 
 public class Bus extends Transport {
     private DriverWithC driver;
@@ -76,6 +77,14 @@ public class Bus extends Transport {
 
     public void removeDriver() {
         this.driver = null;
+    }
+    @Override
+    public void doDiagnostic() {
+        try {
+            throw new TransportTypeException("”Автобусы” диагностику проходить не должны");
+        } catch (TransportTypeException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
