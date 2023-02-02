@@ -1,13 +1,30 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithB;
+import homeworkOOP.mechanics.Mechanic;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LightCar extends Transport {
     private DriverWithB driver;
     private Enum carType;
+    private List<Mechanic> lightCarMechanicsList = new ArrayList<>();
     public LightCar(String brand, String model, double engineCapacity, Enum carType) {
         super(brand, model, engineCapacity);
         this.carType = carType;
+    }
+
+    public void removeMechanic(Mechanic mechanic) {
+        lightCarMechanicsList.remove(mechanic);
+    }
+
+    public void setMechanic(Mechanic mechanic) {
+        lightCarMechanicsList.add(mechanic);
+    }
+    public void printMechanicList() {
+        if (lightCarMechanicsList.isEmpty()) System.out.println("У данного легкого автомобиля список механиков пуст");
+        else for (Mechanic t: lightCarMechanicsList) {System.out.println(t.toString());}
     }
     public enum CarType {
         SEDAN("Седан"),
@@ -40,6 +57,10 @@ public class LightCar extends Transport {
         } else {
             System.out.println("Тип легкового автомобиля: " + carType.name());
         }
+    }
+    @Override
+    public boolean isDiagnosticNeeded() {
+        return true;
     }
 
     public Enum getCarType() {

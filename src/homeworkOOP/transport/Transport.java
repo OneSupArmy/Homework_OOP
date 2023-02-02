@@ -1,7 +1,6 @@
 package homeworkOOP.transport;
 
-import homeworkOOP.drivers.Driver;
-import homeworkOOP.mechanics.Mechanics;
+import homeworkOOP.mechanics.Mechanic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ public abstract class Transport implements Competing {
     private String brand;
     private String model;
     private double engineCapacity;
-    private static List<Mechanics> mechanicsList = new ArrayList<>();
+    private  List<Mechanic> mechanicsList = new ArrayList<>();
 
     public Transport(String brand, String model, double engineCapacity) {
         this.brand = doStringValidation(brand);
@@ -21,18 +20,13 @@ public abstract class Transport implements Competing {
     }
 
     public abstract void printType();
-    public boolean isDiagnosticNeeded(){
-        return true;
-    }
+    public abstract boolean isDiagnosticNeeded();
 
-    public void startMoving() {
-    }
+    public abstract void startMoving();
 
-    public void endMoving() {
-    }
+    public abstract void endMoving();
 
-    public void doDiagnostic() {
-    }
+    public abstract void doDiagnostic();
 
     public String getBrand() {
         return brand;
@@ -58,17 +52,10 @@ public abstract class Transport implements Competing {
         this.engineCapacity = engineCapacity;
     }
 
-    public static void removeMechanic(Mechanics mechanic) {
-        mechanicsList.remove(mechanic);
-    }
+    public abstract void removeMechanic(Mechanic mechanic);
 
-    public static void setMechanic(Mechanics mechanic) {
-        mechanicsList.add(mechanic);
-    }
-    public static void printMechanicList() {
-        if (mechanicsList.isEmpty()) System.out.println("Список механиков пуст");
-        else for (Mechanics t: mechanicsList) {System.out.println(t.toString());}
-    }
+    public abstract void setMechanic(Mechanic mechanic);
+    public abstract void printMechanicList();
 
     @Override
     public String toString() {

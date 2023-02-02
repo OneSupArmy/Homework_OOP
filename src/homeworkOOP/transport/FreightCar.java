@@ -1,14 +1,30 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithD;
+import homeworkOOP.mechanics.Mechanic;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FreightCar extends Transport{
     private DriverWithD driver;
     private Enum loadCapacity;
+    private List<Mechanic> freightCarMechanicsList = new ArrayList<>();
 
     public FreightCar(String brand, String model, double engineCapacity, Enum loadCapacity) {
         super(brand, model, engineCapacity);
         this.loadCapacity = loadCapacity;
+    }
+    public void removeMechanic(Mechanic mechanic) {
+        freightCarMechanicsList.remove(mechanic);
+    }
+
+    public void setMechanic(Mechanic mechanic) {
+        freightCarMechanicsList.add(mechanic);
+    }
+    public void printMechanicList() {
+        if (freightCarMechanicsList.isEmpty()) System.out.println("У данного грузового автомобиля список механиков пуст");
+        else for (Mechanic t: freightCarMechanicsList) {System.out.println(t.toString());}
     }
     public enum LoadCapacity{
         N1(null, 3.5f),
@@ -42,6 +58,11 @@ public class FreightCar extends Transport{
         } else {
             System.out.println("Тип грузового автомобиля: " + loadCapacity.name());
         }
+    }
+
+    @Override
+    public boolean isDiagnosticNeeded() {
+        return true;
     }
 
     public Enum getLoadCapacity() {

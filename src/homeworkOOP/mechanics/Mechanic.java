@@ -2,11 +2,11 @@ package homeworkOOP.mechanics;
 
 import static homeworkOOP.utility.Validation.doStringValidation;
 
-public class Mechanics {
+public class Mechanic {
     private String name;
     private String company;
 
-    public Mechanics(String name, String company) {
+    public Mechanic(String name, String company) {
         this.name = doStringValidation(name);
         this.company = doStringValidation(company);
     }

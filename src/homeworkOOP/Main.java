@@ -1,5 +1,6 @@
 package homeworkOOP;
 
+import homeworkOOP.mechanics.Mechanic;
 import homeworkOOP.transport.Bus;
 import homeworkOOP.transport.LightCar;
 import homeworkOOP.transport.FreightCar;

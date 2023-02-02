@@ -1,15 +1,32 @@
 package homeworkOOP.transport;
 
 import homeworkOOP.drivers.DriverWithC;
+import homeworkOOP.mechanics.Mechanic;
 import homeworkOOP.utility.TransportTypeException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bus extends Transport {
     private DriverWithC driver;
     private Enum amountOfSeats;
 
+    private List<Mechanic> busMechanicsList = new ArrayList<>();
+
     public Bus(String brand, String model, double engineCapacity, Enum amountOfSeats) {
         super(brand, model, engineCapacity);
         this.amountOfSeats = amountOfSeats;
+    }
+    public void removeMechanic(Mechanic mechanic) {
+        busMechanicsList.remove(mechanic);
+    }
+
+    public void setMechanic(Mechanic mechanic) {
+        busMechanicsList.add(mechanic);
+    }
+    public void printMechanicList() {
+        if (busMechanicsList.isEmpty()) System.out.println("У данного автобуса список механиков пуст");
+        else for (Mechanic t: busMechanicsList) {System.out.println(t.toString());}
     }
 
     public enum AmountOfSeats {
