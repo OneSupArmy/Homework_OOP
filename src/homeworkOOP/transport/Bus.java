@@ -58,6 +58,10 @@ public class Bus extends Transport {
     public void setAmountOfSeats(Enum amountOfSeats) {
         this.amountOfSeats = amountOfSeats;
     }
+    @Override
+    public boolean isDiagnosticNeeded() {
+        return false;
+    }
 
     public void setDriver(DriverWithC driver) {
         if (!driver.isDriverWithLicense()) {

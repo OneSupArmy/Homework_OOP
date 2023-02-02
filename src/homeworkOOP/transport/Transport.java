@@ -1,26 +1,39 @@
 package homeworkOOP.transport;
 
-import homeworkOOP.utility.TransportTypeException;
+import homeworkOOP.drivers.Driver;
+import homeworkOOP.mechanics.Mechanics;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static homeworkOOP.utility.Validation.doStringValidation;
 
-public abstract class Transport implements Competing{
+public abstract class Transport implements Competing {
     private String brand;
     private String model;
     private double engineCapacity;
+    private static List<Mechanics> mechanicsList = new ArrayList<>();
 
     public Transport(String brand, String model, double engineCapacity) {
         this.brand = doStringValidation(brand);
         this.model = doStringValidation(model);
-        this.engineCapacity = Math.max(engineCapacity,0);
+        this.engineCapacity = Math.max(engineCapacity, 0);
     }
+
     public abstract void printType();
-    public void startMoving(){
+    public boolean isDiagnosticNeeded(){
+        return true;
     }
-    public void endMoving(){
+
+    public void startMoving() {
     }
+
+    public void endMoving() {
+    }
+
     public void doDiagnostic() {
     }
+
     public String getBrand() {
         return brand;
     }
@@ -43,6 +56,18 @@ public abstract class Transport implements Competing{
 
     public void setEngineCapacity(double engineCapacity) {
         this.engineCapacity = engineCapacity;
+    }
+
+    public static void removeMechanic(Mechanics mechanic) {
+        mechanicsList.remove(mechanic);
+    }
+
+    public static void setMechanic(Mechanics mechanic) {
+        mechanicsList.add(mechanic);
+    }
+    public static void printMechanicList() {
+        if (mechanicsList.isEmpty()) System.out.println("Список механиков пуст");
+        else for (Mechanics t: mechanicsList) {System.out.println(t.toString());}
     }
 
     @Override
