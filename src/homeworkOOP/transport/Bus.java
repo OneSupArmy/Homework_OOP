@@ -17,16 +17,20 @@ public class Bus extends Transport {
         super(brand, model, engineCapacity);
         this.amountOfSeats = amountOfSeats;
     }
+
     public void removeMechanic(Mechanic mechanic) {
         busMechanicsList.remove(mechanic);
     }
-
     public void setMechanic(Mechanic mechanic) {
         busMechanicsList.add(mechanic);
     }
+
     public void printMechanicList() {
         if (busMechanicsList.isEmpty()) System.out.println("У данного автобуса список механиков пуст");
         else for (Mechanic t: busMechanicsList) {System.out.println(t.toString());}
+    }
+    public List<Mechanic> getBusMechanicsList() {
+        return busMechanicsList;
     }
 
     public enum AmountOfSeats {

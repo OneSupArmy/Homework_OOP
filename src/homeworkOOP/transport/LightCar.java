@@ -26,6 +26,11 @@ public class LightCar extends Transport {
         if (lightCarMechanicsList.isEmpty()) System.out.println("У данного легкого автомобиля список механиков пуст");
         else for (Mechanic t: lightCarMechanicsList) {System.out.println(t.toString());}
     }
+
+    public List<Mechanic> getLightCarMechanicsList() {
+        return lightCarMechanicsList;
+    }
+
     public enum CarType {
         SEDAN("Седан"),
         HATCHBACK("Хетчбэк"),
