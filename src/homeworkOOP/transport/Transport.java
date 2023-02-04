@@ -1,26 +1,33 @@
 package homeworkOOP.transport;
 
-import homeworkOOP.utility.TransportTypeException;
+import homeworkOOP.mechanics.Mechanic;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static homeworkOOP.utility.Validation.doStringValidation;
 
-public abstract class Transport implements Competing{
+public abstract class Transport implements Competing {
     private String brand;
     private String model;
     private double engineCapacity;
+    private  List<Mechanic> mechanicsList = new ArrayList<>();
 
     public Transport(String brand, String model, double engineCapacity) {
         this.brand = doStringValidation(brand);
         this.model = doStringValidation(model);
-        this.engineCapacity = Math.max(engineCapacity,0);
+        this.engineCapacity = Math.max(engineCapacity, 0);
     }
+
     public abstract void printType();
-    public void startMoving(){
-    }
-    public void endMoving(){
-    }
-    public void doDiagnostic() {
-    }
+    public abstract boolean isDiagnosticNeeded();
+
+    public abstract void startMoving();
+
+    public abstract void endMoving();
+
+    public abstract void doDiagnostic();
+
     public String getBrand() {
         return brand;
     }
@@ -44,6 +51,11 @@ public abstract class Transport implements Competing{
     public void setEngineCapacity(double engineCapacity) {
         this.engineCapacity = engineCapacity;
     }
+
+    public abstract void removeMechanic(Mechanic mechanic);
+
+    public abstract void setMechanic(Mechanic mechanic);
+    public abstract void printMechanicList();
 
     @Override
     public String toString() {
