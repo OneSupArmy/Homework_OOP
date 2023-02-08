@@ -26,6 +26,11 @@ public class FreightCar extends Transport{
         if (freightCarMechanicsList.isEmpty()) System.out.println("У данного грузового автомобиля список механиков пуст");
         else for (Mechanic t: freightCarMechanicsList) {System.out.println(t.toString());}
     }
+
+    public List<Mechanic> getFreightCarMechanicsList() {
+        return freightCarMechanicsList;
+    }
+
     public enum LoadCapacity{
         N1(null, 3.5f),
         N2(3.5f, 12.0f),

@@ -5,8 +5,11 @@ import homeworkOOP.transport.Bus;
 import homeworkOOP.transport.LightCar;
 import homeworkOOP.transport.FreightCar;
 import homeworkOOP.transport.Transport;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static homeworkOOP.transport.Bus.AmountOfSeats.*;
 import static homeworkOOP.transport.FreightCar.LoadCapacity.*;
@@ -14,6 +17,7 @@ import static homeworkOOP.transport.LightCar.CarType.*;
 
 public class Main {
     public static List<Transport> carList = new ArrayList<>();
+    public static Map<Transport, List<Mechanic>> hashMap = new HashMap<>();
 
     public static void main(String[] args) {
         Bus bus1 = new Bus("Автобус 1", "какая-то модель", 0.1, null);
@@ -40,5 +44,25 @@ public class Main {
         carList.add(freightCar2);
         carList.add(freightCar3);
         carList.add(freightCar4);
+
+        Mechanic mechanic1 = new Mechanic("Механик1", "Компания1");
+        Mechanic mechanic2 = new Mechanic("Механик2", "Компания2");
+        Mechanic mechanic3 = new Mechanic("Механик3", "Компания3");
+
+        bus1.setMechanic(mechanic1);
+        bus1.setMechanic(mechanic2);
+        freightCar1.setMechanic(mechanic3);
+
+        hashMap.put(bus1, bus1.getBusMechanicsList());
+        hashMap.put(lightCar1, lightCar1.getLightCarMechanicsList());
+        hashMap.put(freightCar1, freightCar1.getFreightCarMechanicsList());
+        printMap();
+    }
+
+    public static void printMap() {
+        for (var pairs : hashMap.entrySet()) {
+            if (!pairs.getValue().isEmpty()) System.out.println("Авто - " + pairs.getKey().toString() + " | " + pairs.getValue().toString());
+            else System.out.println("Авто - " + pairs.getKey().toString() + " | Механики отстутсвуют");
+        }
     }
 }
