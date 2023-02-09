@@ -1,21 +1,23 @@
 package homeworkOOP;
 
+import homeworkOOP.drivers.Driver;
+import homeworkOOP.drivers.DriverWithB;
+import homeworkOOP.drivers.DriverWithC;
+import homeworkOOP.drivers.DriverWithD;
 import homeworkOOP.mechanics.Mechanic;
 import homeworkOOP.transport.Bus;
 import homeworkOOP.transport.LightCar;
 import homeworkOOP.transport.FreightCar;
 import homeworkOOP.transport.Transport;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static homeworkOOP.transport.Bus.AmountOfSeats.*;
 import static homeworkOOP.transport.FreightCar.LoadCapacity.*;
 import static homeworkOOP.transport.LightCar.CarType.*;
 
-public class Main {
+public class Service {
+    public static Set<Driver> driverSet = new HashSet<>();
     public static List<Transport> carList = new ArrayList<>();
     public static Map<Transport, List<Mechanic>> hashMap = new HashMap<>();
 
@@ -56,13 +58,31 @@ public class Main {
         hashMap.put(bus1, bus1.getBusMechanicsList());
         hashMap.put(lightCar1, lightCar1.getLightCarMechanicsList());
         hashMap.put(freightCar1, freightCar1.getFreightCarMechanicsList());
-        printMap();
-    }
+        printTrnsportMechanicMap();
 
-    public static void printMap() {
+        DriverWithB testDriver1 = new DriverWithB("ВодительБ", true, 20);
+        DriverWithC testDriver2 = new DriverWithC("ВодительС", true, 20);
+        DriverWithD testDriver3 = new DriverWithD("ВодительД", true, 20);
+        DriverWithD testDriverCopy = new DriverWithD("ВодительД", true, 20);
+        DriverWithD testDriverAnotherCar = new DriverWithD("ВодительД", true, 20);
+        testDriverCopy.setFreightCar(freightCar2);
+        driverSet.add(testDriver1);
+        driverSet.add(testDriver2);
+        driverSet.add(testDriver3);
+        driverSet.add(testDriverCopy);
+        driverSet.add(testDriverAnotherCar);
+        printSetWithIterator();
+    }
+    static void printTrnsportMechanicMap() {
         for (var pairs : hashMap.entrySet()) {
-            if (!pairs.getValue().isEmpty()) System.out.println("Авто - " + pairs.getKey().toString() + " | " + pairs.getValue().toString());
+            if (!pairs.getValue().isEmpty())
+                System.out.println("Авто - " + pairs.getKey().toString() + " | " + pairs.getValue().toString());
             else System.out.println("Авто - " + pairs.getKey().toString() + " | Механики отстутсвуют");
         }
+    }
+    static void printSetWithIterator() {
+        Iterator<Driver> iterator = driverSet.iterator();
+        while (iterator.hasNext())
+            System.out.println(iterator.next().toString());
     }
 }
