@@ -2,26 +2,30 @@ package homeworkOOP.drivers;
 
 import homeworkOOP.utility.Validation.*;
 
+import java.util.Objects;
+
 import static homeworkOOP.utility.Validation.doStringValidation;
 
 public abstract class Driver {
-private String name;
-private boolean isDriverWithLicense;
-private int experience;
+    private String name;
+    private boolean isDriverWithLicense;
+    private int experience;
 
     public Driver(String name, boolean isDriverWithLicense, int experience) {
         this.name = doStringValidation(name);
         this.isDriverWithLicense = isDriverWithLicense;
-        this.experience = Math.max(experience,0);
+        this.experience = Math.max(experience, 0);
     }
 
-    public void startMoving(){
+    public void startMoving() {
         System.out.println("Водитель начал движение");
     }
-    public void endMoving(){
+
+    public void endMoving() {
         System.out.println("Водитель закончил движение");
     }
-    public void fillTheTank(){
+
+    public void fillTheTank() {
         System.out.println("Водитель заправился");
     }
 
@@ -48,10 +52,24 @@ private int experience;
     public void setExperience(int experience) {
         this.experience = experience;
     }
+
     @Override
     public String toString() {
         return "Ф.И.О. - " + name +
                 ", наличие водительских прав - " + isDriverWithLicense +
                 ", опыт вождения - " + experience;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Driver)) return false;
+        Driver driver = (Driver) o;
+        return isDriverWithLicense == driver.isDriverWithLicense && experience == driver.experience && name.equals(driver.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, isDriverWithLicense, experience);
     }
 }

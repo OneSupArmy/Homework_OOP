@@ -2,6 +2,8 @@ package homeworkOOP.drivers;
 
 import homeworkOOP.transport.Bus;
 
+import java.util.Objects;
+
 public class DriverWithC extends Driver {
     private Bus bus;
 
@@ -26,9 +28,22 @@ public class DriverWithC extends Driver {
         return bus;
     }
     public String getMassage(){
-        //Видимо тут нужны были дженерики но я уже задал поле которое делает тоже самое О_о, скажите если нужно переделать
         if (bus == null)
             return "водитель " + getName() + " свободен и не учатсвует в заезде";
         return "водитель " + getName() + " управляет автомобилем " + bus.getBrand() + " " + bus.getModel() + " и будет участвовать в заезде";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DriverWithC)) return false;
+        if (!super.equals(o)) return false;
+        DriverWithC that = (DriverWithC) o;
+        return Objects.equals(bus, that.bus);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), bus);
     }
 }
